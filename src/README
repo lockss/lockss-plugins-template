@@ -1,0 +1,6 @@
+main/java and test/java should contain a plugins src and test tree.
+One way to do that is to create two symlinks pointing to the plugins in
+a lockss-daemon tree:
+
+main/java -> .../lockss-daemon/plugins/src/
+test/java -> .../lockss-daemon/plugins/test/src/

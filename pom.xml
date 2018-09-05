@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+
+Copyright (c) 2000-2018, Board of Trustees of Leland Stanford Jr. University
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation and/or
+other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+may be used to endorse or promote products derived from this software without
+specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.lockss</groupId>
+    <artifactId>lockss-parent-pom</artifactId>
+    <version>1.9.0-SNAPSHOT</version>
+    <relativePath />
+  </parent>
+
+  <groupId>org.lockss.laaws</groupId>
+  <artifactId>lockss-plugins</artifactId>
+  <version>1.2.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  
+  <name>lockss-plugins</name>
+  <description>Build and package LOCKSS plugins against lockss-core</description>
+
+  <properties>
+<!--     <build.releasename>1.74.0</build.releasename> -->
+  </properties>
+
+  <!-- Must be in every lockss-parent-pom descendant -->
+  <scm>
+    <connection>${scmConnection}</connection>
+    <developerConnection>${scmDeveloperConnection}</developerConnection>
+    <url>${scmUrl}</url>
+  </scm>
+  
+  <dependencies>
+
+    <dependency>
+      <groupId>org.lockss</groupId>
+      <artifactId>lockss-core-bundle</artifactId>
+      <version>${lockss.core.bundleVersion}</version>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.lockss.laaws</groupId>
+      <artifactId>lockss-plugin-compat</artifactId>
+      <version>${lockss.core.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.lockss</groupId>
+      <artifactId>lockss-junit4-bundle</artifactId>
+      <version>${lockss.junit4.bundleVersion}</version>
+      <type>pom</type>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+	<configuration>
+	  <excludes>
+	    <exclude>**/silverchair/*.java</exclude>
+	    <exclude>**/silverchair/**/*.java</exclude>
+<!-- 	    <exclude>**/mathematicalsciencespublishers/*.java</exclude> -->
+
+	  </excludes>
+	  <testExcludes>
+	    <testExclude>**/silverchair/*.java</testExclude>>
+	    <testExclude>**/silverchair/**/*.java</testExclude>
+	    <testExclude>**/Test*ArticleIteratorFactory.java</testExclude>
+	    <testExclude>**/TestBaseAtyponContentValidator.java</testExclude>
+	    <testExclude>**/TestIUCrFeatureUrlHelper.java</testExclude>
+	    <testExclude>**/TestUpdatedMinervaMetadataExtractorFactory.java</testExclude>
+	    <testExclude>**/TestElsevierDTD5XmlMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestBaseAtyponMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestTafMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestNatureArchivalUnit.java</testExclude>
+	    <testExclude>**/TestRSC2014ResponseHandler.java</testExclude>
+	    <testExclude>**/TestMsResponseHandler.java</testExclude>
+	    <testExclude>**/TestMedknowUrlNormalizer.java</testExclude>
+	    <testExclude>**/TestPensoftUrlNormalizer.java</testExclude>
+	  </testExcludes>
+	</configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.lockss.laaws</groupId>
+        <artifactId>lockss-tdbxml-maven-plugin</artifactId>
+        <version>${lockss.tdbxml-maven-plugin.version}</version>
+        <configuration>
+          <srcDir>src/test/java</srcDir>
+          <dstDir>target/test-classes</dstDir>
+          <recurse>true</recurse>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>tdbxml</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+          <include>**/*.dat</include>
+          <include>**/*.dat.gz</include>
+          <include>**/*.dtd</include>
+          <include>**/*.props</include>
+          <include>**/*.keystore</include>
+        </includes>
+      </resource>
+    </resources>
+    <testResources>
+<!--       <addDefaultExcludes>false</addDefaultExcludes> -->
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+      <testResource>
+	<directory>src/test/java</directory>
+	<excludes>
+          <exclude>**/*.java</exclude>
+<!--           <exclude>**/*.tdb</exclude> -->
+	</excludes>
+      </testResource>
+    </testResources>
+  </build>
+
+  
+
+</project>
