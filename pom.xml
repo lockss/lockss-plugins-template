@@ -161,7 +161,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<directory>src/test/java</directory>
 	<excludes>
           <exclude>**/*.java</exclude>
-<!--           <exclude>**/*.tdb</exclude> -->
+          <exclude>**/*.tdb</exclude>
 	</excludes>
       </testResource>
     </testResources>
