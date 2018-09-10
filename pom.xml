@@ -83,7 +83,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <type>pom</type>
       <scope>test</scope>
     </dependency>
-    
+       <dependency>
+      <groupId>org.lockss</groupId>
+      <artifactId>lockss-tdb-tools</artifactId>
+      <version>${lockss.tdb-tools.version}</version>
+      <scope>test</scope>
+    </dependency>
+ 
   </dependencies>
   
   <build>
