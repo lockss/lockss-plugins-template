@@ -111,7 +111,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	    <testExclude>**/TestBaseAtyponContentValidator.java</testExclude>
 	    <testExclude>**/TestIUCrFeatureUrlHelper.java</testExclude>
 	    <testExclude>**/TestUpdatedMinervaMetadataExtractorFactory.java</testExclude>
-	    <testExclude>**/TestElsevierDTD5XmlMetadataExtractor.java</testExclude>
 	    <testExclude>**/TestBaseAtyponMetadataExtractor.java</testExclude>
 	    <testExclude>**/TestTafMetadataExtractor.java</testExclude>
 	    <testExclude>**/TestNatureArchivalUnit.java</testExclude>
