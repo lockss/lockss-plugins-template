@@ -160,6 +160,45 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <id>package-plugins</id>
+            <phase>package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>java</executable>
+<!-- 	      <addOutputToClasspath>false</addOutputToClasspath> -->
+<!-- 	      <classpathScope>test</classpathScope> -->
+
+              <arguments>
+		<argument>-classpath</argument>
+		<classpath/>
+<!--                 <argument>-Dorg.lockss.defaultLogLevel=debug</argument> -->
+                <argument>-Dorg.lockss.defaultLogLevel=warn</argument>
+                <argument>org.lockss.util.PluginPackager</argument>
+                <argument>-nofail</argument>
+                <argument>-pd</argument>
+                <argument>${basedir}/target/classes</argument>
+                <argument>-od</argument>
+                <argument>${basedir}/target/pluginjars</argument>
+                <argument>-keystore</argument>
+                <argument>${basedir}/anon.keystore</argument>
+                <argument>-alias</argument>
+                <argument>anon</argument>
+
+              </arguments>
+<!--               <skip>${skip.package.plugins}</skip> -->
+<!--               <workingDirectory>test/frameworks/run_stf</workingDirectory> -->
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
     <resources>
       <resource>
