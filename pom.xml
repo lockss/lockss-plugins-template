@@ -75,6 +75,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <artifactId>lockss-core-tests-bundle</artifactId>
       <version>${lockss.core.bundleVersion}</version>
       <type>pom</type>
+
+      <!-- Remove when old plugins jar dependency is removed from
+           lockss-core -->
+      <exclusions>
+        <exclusion>
+	  <groupId>org.lockss</groupId>
+	  <artifactId>lockss-plugins</artifactId>
+<!-- 	  <version>${lockss.plugins.version}</version> -->
+        </exclusion>
+      </exclusions>
+
 <!-- Temporarily include test jar in main scope so can run packager from
      cmdline -->
 <!--       <scope>test</scope> -->
