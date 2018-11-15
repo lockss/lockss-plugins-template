@@ -122,8 +122,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	  <excludes>
 	    <exclude>**/silverchair/*.java</exclude>
 	    <exclude>**/silverchair/**/*.java</exclude>
-<!-- 	    <exclude>**/mathematicalsciencespublishers/*.java</exclude> -->
-
 	  </excludes>
 	  <testExcludes>
 	    <testExclude>**/silverchair/*.java</testExclude>>
@@ -182,7 +180,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!--                 <argument>-Dorg.lockss.defaultLogLevel=debug</argument> -->
                 <argument>-Dorg.lockss.defaultLogLevel=warn</argument>
                 <argument>org.lockss.util.PluginPackager</argument>
-                <argument>-nofail</argument>
                 <argument>-pd</argument>
                 <argument>${basedir}/target/classes</argument>
                 <argument>-od</argument>
@@ -191,6 +188,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 <argument>${basedir}/anon.keystore</argument>
                 <argument>-alias</argument>
                 <argument>anon</argument>
+
+		<!-- These currently fail loading aux classes -->
+                <argument>-x</argument>
+                <argument>org.lockss.plugin.elifesciences.ELifeSciencesPlugin2018</argument>
+                <argument>-x</argument>
+                <argument>org\.lockss\.plugin\.silverchair\..*</argument>
 
               </arguments>
 <!--               <skip>${skip.package.plugins}</skip> -->
