@@ -140,6 +140,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	    <testExclude>**/TestSpandidosMetadataExtractor.java</testExclude>
 	    <testExclude>**/TestHighWireDrupalArticleIteratorVIPFactory.java</testExclude>
 	    <testExclude>**/TestCambridgeMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestACMJatsXmlXPathMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestInnovativeMedicalResearchMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestSpringerJatsXmlXPathMetadataExtractor.java</testExclude>
 
 	  </testExcludes>
 	</configuration>
