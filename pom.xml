@@ -51,7 +51,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <description>Build and package LOCKSS plugins against lockss-core</description>
 
   <properties>
-<!--     <build.releasename>1.74.0</build.releasename> -->
+    <keystore.file>${basedir}/anon.keystore</keystore.file>
+    <keystore.alias>anon</keystore.alias>
   </properties>
 
   <!-- Must be in every lockss-parent-pom descendant -->
@@ -165,6 +166,31 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>${version.plugin.maven-antrun-plugin}</version>
+        <executions>
+          <execution>
+            <id>read-password</id>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <target>
+                <input message="Keystore password: "
+                       addproperty="keystore.password" >
+		  <handler type="secure"/>
+		</input>
+              </target>
+              <exportAntProperties>true</exportAntProperties>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -185,16 +211,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<argument>-classpath</argument>
 		<classpath/>
 <!--                 <argument>-Dorg.lockss.defaultLogLevel=debug</argument> -->
-                <argument>-Dorg.lockss.defaultLogLevel=warn</argument>
+                <argument>-Dorg.lockss.defaultLogLevel=warning</argument>
                 <argument>org.lockss.util.PluginPackager</argument>
                 <argument>-pd</argument>
                 <argument>${basedir}/target/classes</argument>
                 <argument>-od</argument>
                 <argument>${basedir}/target/pluginjars</argument>
                 <argument>-keystore</argument>
-                <argument>${basedir}/anon.keystore</argument>
+                <argument>${keystore.file}</argument>
                 <argument>-alias</argument>
-                <argument>anon</argument>
+                <argument>${keystore.alias}</argument>
+                <argument>-storepass</argument>
+                <argument>${keystore.password}</argument>
 
 		<!-- These currently fail loading aux classes -->
                 <argument>-x</argument>
