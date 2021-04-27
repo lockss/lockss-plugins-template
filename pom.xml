@@ -123,6 +123,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	  <excludes>
 	    <exclude>**/silverchair/*.java</exclude>
 	    <exclude>**/silverchair/**/*.java</exclude>
+	    <exclude>**/internationalunionofcrystallography/oai/**/*.java</exclude>
 	  </excludes>
 	  <testExcludes>
 	    <testExclude>**/silverchair/*.java</testExclude>>
@@ -144,7 +145,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	    <testExclude>**/TestACMJatsXmlXPathMetadataExtractor.java</testExclude>
 	    <testExclude>**/TestInnovativeMedicalResearchMetadataExtractor.java</testExclude>
 	    <testExclude>**/TestSpringerJatsXmlXPathMetadataExtractor.java</testExclude>
-
+	    <testExclude>**/internationalunionofcrystallography/**/*.java</testExclude>
 	  </testExcludes>
 	</configuration>
       </plugin>
