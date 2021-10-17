@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
 
-Copyright (c) 2000-2018, Board of Trustees of Leland Stanford Jr. University
+Copyright (c) 2000-2021, Board of Trustees of Leland Stanford Jr. University
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -37,9 +37,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <parent>
     <groupId>org.lockss</groupId>
-    <artifactId>lockss-parent-pom</artifactId>
-    <version>1.13.0-SNAPSHOT</version>
-    <relativePath />
+    <artifactId>lockss-plugins-parent-pom</artifactId>
+    <version>1.3.0-SNAPSHOT</version>
+    <relativePath/>
   </parent>
 
   <groupId>org.lockss.laaws</groupId>
@@ -50,68 +50,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <name>lockss-plugins</name>
   <description>Build and package LOCKSS plugins against lockss-core</description>
 
-  <properties>
-    <keystore.file>${basedir}/anon.keystore</keystore.file>
-    <keystore.alias>anon</keystore.alias>
-  </properties>
-
-  <!-- Must be in every lockss-parent-pom descendant -->
-  <scm>
-    <connection>${scmConnection}</connection>
-    <developerConnection>${scmDeveloperConnection}</developerConnection>
-    <url>${scmUrl}</url>
-  </scm>
-  
   <dependencies>
-
-    <dependency>
-      <groupId>org.lockss</groupId>
-      <artifactId>lockss-core-bundle</artifactId>
-      <version>${version.lockss.lockss-core-bundle}</version>
-      <type>pom</type>
-    </dependency>
-
-    <dependency>
-      <groupId>org.lockss</groupId>
-      <artifactId>lockss-core-tests-bundle</artifactId>
-      <version>${version.lockss.lockss-core-bundle}</version>
-      <type>pom</type>
-
-      <!-- Remove when old plugins jar dependency is removed from
-           lockss-core -->
-      <exclusions>
-        <exclusion>
-	  <groupId>org.lockss</groupId>
-	  <artifactId>lockss-plugins</artifactId>
-<!-- 	  <version>${lockss.plugins.version}</version> -->
-        </exclusion>
-      </exclusions>
-
-<!-- Temporarily include test jar in main scope so can run packager from
-     cmdline -->
-<!--       <scope>test</scope> -->
-    </dependency>
-
     <dependency>
       <groupId>org.lockss.laaws</groupId>
       <artifactId>lockss-plugin-compat</artifactId>
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
-
-    <dependency>
-      <groupId>org.lockss</groupId>
-      <artifactId>lockss-junit4-bundle</artifactId>
-      <version>${version.lockss.lockss-junit4-bundle}</version>
-      <type>pom</type>
-      <scope>test</scope>
-    </dependency>
-       <dependency>
-      <groupId>org.lockss</groupId>
-      <artifactId>lockss-tdb-processor</artifactId>
-      <version>${version.lockss.lockss-tdb-processor}</version>
-      <scope>test</scope>
-    </dependency>
- 
   </dependencies>
   
   <build>
@@ -121,158 +65,90 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<artifactId>maven-compiler-plugin</artifactId>
 	<configuration>
 	  <excludes>
-	    <exclude>**/silverchair/*.java</exclude>
+
+            <!-- Doesn't compile - needs daemon work -->
+
+            <!-- Directly accesses old httpclient. -->
 	    <exclude>**/silverchair/**/*.java</exclude>
+
+            <!-- Unsolved problem with LockssWatchdog cast -->
 	    <exclude>**/internationalunionofcrystallography/oai/**/*.java</exclude>
+            <!-- Needs feature-POST -->
+	    <exclude>**/jasper/*.java</exclude>
 	  </excludes>
 	  <testExcludes>
-	    <testExclude>**/silverchair/*.java</testExclude>>
+
+            <!-- Depends on main classes that don't compile -->
 	    <testExclude>**/silverchair/**/*.java</testExclude>
+	    <testExclude>**/internationalunionofcrystallography/**/*.java</testExclude>
+	    <testExclude>**/jasper/*.java</testExclude>>
+
+            <!-- Needs daemon work -->
+
+            <!-- Many of these refer to NodeManager to delete
+                 preserved file -->
 	    <testExclude>**/Test*ArticleIteratorFactory.java</testExclude>
-	    <testExclude>**/TestBaseAtyponContentValidator.java</testExclude>
-	    <testExclude>**/TestIUCrFeatureUrlHelper.java</testExclude>
-	    <testExclude>**/TestUpdatedMinervaMetadataExtractorFactory.java</testExclude>
-	    <testExclude>**/TestBaseAtyponMetadataExtractor.java</testExclude>
-	    <testExclude>**/TestTafMetadataExtractor.java</testExclude>
+
+            <!-- Various inappropriate dependencies on internal
+                 lockss-daemon code -->
 	    <testExclude>**/TestNatureArchivalUnit.java</testExclude>
 	    <testExclude>**/TestRSC2014ResponseHandler.java</testExclude>
 	    <testExclude>**/TestMsResponseHandler.java</testExclude>
 	    <testExclude>**/TestMedknowUrlNormalizer.java</testExclude>
+
+            <!-- Compiles, but various test failures, need to be
+                 investigated -->
 	    <testExclude>**/TestPensoftUrlNormalizer.java</testExclude>
 	    <testExclude>**/TestSpandidosMetadataExtractor.java</testExclude>
-	    <testExclude>**/TestHighWireDrupalArticleIteratorVIPFactory.java</testExclude>
-	    <testExclude>**/TestCambridgeMetadataExtractor.java</testExclude>
+<!-- 	    <testExclude>**/TestCambridgeMetadataExtractor.java</testExclude> -->
+            <testExclude>**/TestHighWireJCoreArticleIteratorVIPFactory.java</testExclude>
+            <testExclude>**/TestBioOne2020MetadataExtractorFactory.java</testExclude>
+
+            <!-- These tests fail because of dependency on source tree
+                 paths.  Should use getRespource() -->
 	    <testExclude>**/TestACMJatsXmlXPathMetadataExtractor.java</testExclude>
-	    <testExclude>**/TestInnovativeMedicalResearchMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestBlackQuotidianRDFXPath.java</testExclude>
+	    <testExclude>**/TestActaDermatoVenereologicaNLMHelper.java</testExclude>
+	    <testExclude>**/TestAmericanPodiatricMedicalAssociationSourceXmlMetadataExtractorFactory.java</testExclude>
+	    <testExclude>**/TestCasaliniLibriMetadataExtractorFactory.java</testExclude>
+	    <testExclude>**/TestEastviewMarcXmlMetadataExtractorFactory.java</testExclude>
+	    <testExclude>**/TestElifeSciencesMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestIGPublishingMetadataExtractorFactory.java</testExclude>
+	    <testExclude>**/TestInnovativeMedicalResearchPressMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestInnovativePublicationJatsXmlXPathMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestIntechOpenOnix3XmlMetadataExtractorFactory.java</testExclude>
+	    <testExclude>**/TestInternationalStructuralEngineeringConstructionSocietySourceXmlMetadataExtractorFactory.java</testExclude>
+	    <testExclude>**/TestJournalofEvolutionMedicalDentalSciencesJatsXmlXpathMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestLiverpoolOnix3XmlMetadataExtractorFactory.java</testExclude>
+	    <testExclude>**/TestScienceOpenMetadataExtractor.java</testExclude>
+	    <testExclude>**/TestGigaScienceAPIHelper.java</testExclude>
+	    <testExclude>**/TestGigaScienceDoiLinkExtractor.java</testExclude>
 	    <testExclude>**/TestSpringerJatsXmlXPathMetadataExtractor.java</testExclude>
-	    <testExclude>**/internationalunionofcrystallography/**/*.java</testExclude>
+
 	  </testExcludes>
 	</configuration>
       </plugin>
+
+      <!-- lockss-daemon has no src/main/tdb -->
       <plugin>
         <groupId>org.lockss.laaws</groupId>
         <artifactId>lockss-tdbxml-maven-plugin</artifactId>
         <version>${version.lockss.lockss-tdbxml-maven-plugin}</version>
-        <configuration>
-          <srcDir>src/test/java</srcDir>
-          <dstDir>target/test-classes</dstDir>
-          <recurse>true</recurse>
-        </configuration>
         <executions>
+	  <!-- src/main/tdb -->
           <execution>
-            <phase>process-test-resources</phase>
+            <id>processTdb</id>
+            <phase>compile</phase>
             <goals>
               <goal>tdbxml</goal>
             </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>${version.plugin.maven-antrun-plugin}</version>
-        <executions>
-          <execution>
-            <id>read-password</id>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <phase>prepare-package</phase>
             <configuration>
-              <target>
-                <input message="Keystore password: "
-                       addproperty="keystore.password" >
-		  <handler type="secure"/>
-		</input>
-              </target>
-              <exportAntProperties>true</exportAntProperties>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.6.0</version>
-        <executions>
-          <execution>
-            <id>package-plugins</id>
-            <phase>package</phase>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <configuration>
-              <executable>java</executable>
-<!-- 	      <addOutputToClasspath>false</addOutputToClasspath> -->
-<!-- 	      <classpathScope>test</classpathScope> -->
-
-              <arguments>
-		<argument>-classpath</argument>
-		<classpath/>
-                <argument>-Dorg.lockss.defaultLogLevel=${loglevel}</argument>
-                <argument>org.lockss.util.PluginPackager</argument>
-                <argument>-pd</argument>
-                <argument>${basedir}/target/classes</argument>
-                <argument>-od</argument>
-                <argument>${basedir}/target/pluginjars</argument>
-                <argument>-keystore</argument>
-                <argument>${keystore.file}</argument>
-                <argument>-alias</argument>
-                <argument>${keystore.alias}</argument>
-                <argument>-storepass</argument>
-                <argument>${keystore.password}</argument>
-                <argument>-keypass</argument>
-                <argument>${keystore.password}</argument>
-
-		<!-- These currently fail loading aux classes -->
-                <argument>-x</argument>
-                <argument>org.lockss.plugin.elifesciences.ELifeSciencesPlugin2018</argument>
-                <argument>-x</argument>
-                <argument>org\.lockss\.plugin\.silverchair\..*</argument>
-
-              </arguments>
-<!--               <skip>${skip.package.plugins}</skip> -->
-<!--               <workingDirectory>test/frameworks/run_stf</workingDirectory> -->
+              <skip>true</skip>
             </configuration>
           </execution>
         </executions>
       </plugin>
     </plugins>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-      <resource>
-        <directory>src/main/java</directory>
-        <includes>
-          <include>**/*.xml</include>
-          <include>**/*.dat</include>
-          <include>**/*.dat.gz</include>
-          <include>**/*.dtd</include>
-          <include>**/*.props</include>
-          <include>**/*.keystore</include>
-          <include>**/lib/*.jar</include>
-        </includes>
-      </resource>
-    </resources>
-    <testResources>
-<!--       <addDefaultExcludes>false</addDefaultExcludes> -->
-      <testResource>
-        <directory>src/test/resources</directory>
-      </testResource>
-      <testResource>
-	<directory>src/test/java</directory>
-	<excludes>
-          <exclude>**/*.java</exclude>
-          <exclude>**/*.tdb</exclude>
-	</excludes>
-      </testResource>
-    </testResources>
   </build>
-
-  
 
 </project>
