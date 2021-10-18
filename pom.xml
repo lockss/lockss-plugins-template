@@ -107,7 +107,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <!-- These tests fail because of dependency on source tree
                  paths.  Should use getRespource() -->
 	    <testExclude>**/TestACMJatsXmlXPathMetadataExtractor.java</testExclude>
-	    <testExclude>**/TestBlackQuotidianRDFXPath.java</testExclude>
+<!-- 	    <testExclude>**/TestBlackQuotidianRDFXPath.java</testExclude> -->
 	    <testExclude>**/TestActaDermatoVenereologicaNLMHelper.java</testExclude>
 	    <testExclude>**/TestAmericanPodiatricMedicalAssociationSourceXmlMetadataExtractorFactory.java</testExclude>
 	    <testExclude>**/TestCasaliniLibriMetadataExtractorFactory.java</testExclude>
