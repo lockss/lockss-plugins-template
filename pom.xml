@@ -85,10 +85,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
             <!-- Needs daemon work -->
 
-            <!-- Many of these refer to NodeManager to delete
-                 preserved file -->
-	    <testExclude>**/Test*ArticleIteratorFactory.java</testExclude>
-
             <!-- Various inappropriate dependencies on internal
                  lockss-daemon code -->
 	    <testExclude>**/TestNatureArchivalUnit.java</testExclude>
@@ -100,9 +96,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                  investigated -->
 	    <testExclude>**/TestPensoftUrlNormalizer.java</testExclude>
 	    <testExclude>**/TestSpandidosMetadataExtractor.java</testExclude>
-<!-- 	    <testExclude>**/TestCambridgeMetadataExtractor.java</testExclude> -->
-            <testExclude>**/TestHighWireJCoreArticleIteratorVIPFactory.java</testExclude>
             <testExclude>**/TestBioOne2020MetadataExtractorFactory.java</testExclude>
+            <testExclude>**/TestIgiGlobalArticleIteratorFactory.java</testExclude>
+            <testExclude>**/TestWileyArticleIteratorFactory.java</testExclude>
 
             <!-- These tests fail because of dependency on source tree
                  paths.  Should use getRespource() -->
