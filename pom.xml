@@ -68,13 +68,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
             <!-- Doesn't compile - needs daemon work -->
 
-            <!-- Directly accesses old httpclient. -->
-	    <exclude>**/silverchair/**/*.java</exclude>
-
             <!-- Unsolved problem with LockssWatchdog cast -->
 	    <exclude>**/internationalunionofcrystallography/oai/**/*.java</exclude>
             <!-- Needs feature-POST -->
 	    <exclude>**/jasper/*.java</exclude>
+	    <exclude>**/silverchair/**/*.java</exclude>
 	  </excludes>
 	  <testExcludes>
 
