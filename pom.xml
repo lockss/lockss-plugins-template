@@ -81,23 +81,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	    <testExclude>**/internationalunionofcrystallography/**/*.java</testExclude>
 	    <testExclude>**/jasper/*.java</testExclude>>
 
-            <!-- Needs daemon work -->
-
-            <!-- Various inappropriate dependencies on internal
-                 lockss-daemon code -->
-	    <testExclude>**/TestNatureArchivalUnit.java</testExclude>
-	    <testExclude>**/TestRSC2014ResponseHandler.java</testExclude>
-	    <testExclude>**/TestMsResponseHandler.java</testExclude>
-	    <testExclude>**/TestMedknowUrlNormalizer.java</testExclude>
-
-            <!-- Compiles, but various test failures, need to be
-                 investigated -->
-	    <testExclude>**/TestPensoftUrlNormalizer.java</testExclude>
-	    <testExclude>**/TestSpandidosMetadataExtractor.java</testExclude>
-            <testExclude>**/TestBioOne2020MetadataExtractorFactory.java</testExclude>
-            <testExclude>**/TestIgiGlobalArticleIteratorFactory.java</testExclude>
-            <testExclude>**/TestWileyArticleIteratorFactory.java</testExclude>
-
             <!-- These tests fail because of dependency on source tree
                  paths.  Should use getRespource() -->
 	    <testExclude>**/TestACMJatsXmlXPathMetadataExtractor.java</testExclude>
