@@ -68,17 +68,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
             <!-- Doesn't compile - needs daemon work -->
 
-            <!-- Unsolved problem with LockssWatchdog cast -->
-	    <exclude>**/internationalunionofcrystallography/oai/**/*.java</exclude>
-            <!-- Needs feature-POST -->
+            <!-- Depends on unreleased POST support -->
 	    <exclude>**/jasper/*.java</exclude>
 	    <exclude>**/silverchair/**/*.java</exclude>
 	  </excludes>
 	  <testExcludes>
 
-            <!-- Depends on main classes that don't compile -->
+            <!-- Depends on unreleased POST support -->
 	    <testExclude>**/silverchair/**/*.java</testExclude>
-	    <testExclude>**/internationalunionofcrystallography/**/*.java</testExclude>
 	    <testExclude>**/jasper/*.java</testExclude>>
 
             <!-- These tests fail because of dependency on source tree
