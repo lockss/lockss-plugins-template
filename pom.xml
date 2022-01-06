@@ -66,20 +66,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<configuration>
 	  <excludes>
 
-            <!-- Doesn't compile - needs daemon work -->
-
-            <!-- Depends on unreleased POST support -->
-	    <exclude>**/jasper/*.java</exclude>
-	    <exclude>**/silverchair/**/*.java</exclude>
 	  </excludes>
 	  <testExcludes>
 
-            <!-- Depends on unreleased POST support -->
-	    <testExclude>**/silverchair/**/*.java</testExclude>
-	    <testExclude>**/jasper/*.java</testExclude>>
-
             <!-- These tests fail because of dependency on source tree
-                 paths.  Should use getRespource() -->
+                 paths.  Should use getResource() -->
 	    <testExclude>**/TestACMJatsXmlXPathMetadataExtractor.java</testExclude>
 <!-- 	    <testExclude>**/TestBlackQuotidianRDFXPath.java</testExclude> -->
 	    <testExclude>**/TestActaDermatoVenereologicaNLMHelper.java</testExclude>
