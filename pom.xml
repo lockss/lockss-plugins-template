@@ -64,33 +64,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-compiler-plugin</artifactId>
 	<configuration>
-	  <excludes>
+<!-- 	  <excludes> -->
 
-	  </excludes>
-	  <testExcludes>
+<!-- 	  </excludes> -->
+<!-- 	  <testExcludes> -->
 
-            <!-- These tests fail because of dependency on source tree
-                 paths.  Should use getResource() -->
-	    <testExclude>**/TestACMJatsXmlXPathMetadataExtractor.java</testExclude>
-<!-- 	    <testExclude>**/TestBlackQuotidianRDFXPath.java</testExclude> -->
-	    <testExclude>**/TestActaDermatoVenereologicaNLMHelper.java</testExclude>
-	    <testExclude>**/TestAmericanPodiatricMedicalAssociationSourceXmlMetadataExtractorFactory.java</testExclude>
-	    <testExclude>**/TestCasaliniLibriMetadataExtractorFactory.java</testExclude>
-	    <testExclude>**/TestEastviewMarcXmlMetadataExtractorFactory.java</testExclude>
-	    <testExclude>**/TestElifeSciencesMetadataExtractor.java</testExclude>
-	    <testExclude>**/TestIGPublishingMetadataExtractorFactory.java</testExclude>
-	    <testExclude>**/TestInnovativeMedicalResearchPressMetadataExtractor.java</testExclude>
-	    <testExclude>**/TestInnovativePublicationJatsXmlXPathMetadataExtractor.java</testExclude>
-	    <testExclude>**/TestIntechOpenOnix3XmlMetadataExtractorFactory.java</testExclude>
-	    <testExclude>**/TestInternationalStructuralEngineeringConstructionSocietySourceXmlMetadataExtractorFactory.java</testExclude>
-	    <testExclude>**/TestJournalofEvolutionMedicalDentalSciencesJatsXmlXpathMetadataExtractor.java</testExclude>
-	    <testExclude>**/TestLiverpoolOnix3XmlMetadataExtractorFactory.java</testExclude>
-	    <testExclude>**/TestScienceOpenMetadataExtractor.java</testExclude>
-	    <testExclude>**/TestGigaScienceAPIHelper.java</testExclude>
-	    <testExclude>**/TestGigaScienceDoiLinkExtractor.java</testExclude>
-	    <testExclude>**/TestSpringerJatsXmlXPathMetadataExtractor.java</testExclude>
+<!-- 	    <testExclude>**/TestClass.java</testExclude> -->
 
-	  </testExcludes>
+<!-- 	  </testExcludes> -->
 	</configuration>
       </plugin>
 
