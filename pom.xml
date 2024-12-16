@@ -54,7 +54,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>org.lockss.laaws</groupId>
       <artifactId>lockss-plugin-compat</artifactId>
-      <version>1.6.0-SNAPSHOT</version>
+      <version>1.7.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
   
