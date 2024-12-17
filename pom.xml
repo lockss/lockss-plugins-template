@@ -50,14 +50,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <name>lockss-plugins</name>
   <description>Build and package LOCKSS plugins against lockss-core</description>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.lockss.laaws</groupId>
-      <artifactId>lockss-plugin-compat</artifactId>
-      <version>1.7.0-SNAPSHOT</version>
-    </dependency>
-  </dependencies>
-  
   <build>
     <plugins>
       <plugin>
