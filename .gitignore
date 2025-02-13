@@ -89,3 +89,7 @@ logs/
 hs_err_pid*
 
 /.surefire-*
+
+src/main/
+src/test/
+
